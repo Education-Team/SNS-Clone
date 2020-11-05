@@ -21,6 +21,7 @@ bundle.js
 bundle.js.map
 
 yarn.lock
+package-lock.json
 
 ### VisualStudioCode ###
 .vscode

@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import Top from './components/top/Top';
-import Main from './components/main/Main';
+// import Main from './components/main/Main';
+
+import Home from './components/home/Home';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Top />
-	<Main />
+	<Home />
   </React.StrictMode>,
   document.getElementById('root')
 );

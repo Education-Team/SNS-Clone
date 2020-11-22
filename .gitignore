@@ -23,6 +23,8 @@ bundle.js.map
 yarn.lock
 package-lock.json
 
+build/
+
 ### VisualStudioCode ###
 .vscode
 .vscode/*

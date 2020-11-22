@@ -2,6 +2,10 @@ import React from 'react';
 import Profile from './profile.jpg';
 
 const Right = () => {
+	const style0 = {
+		"left": "1126px"
+	}
+
 	const style1 = {
 		"width": "100%"
 	}
@@ -20,10 +24,10 @@ const Right = () => {
 	}
 	
 	return (
-		<div class="COOzN MnWb5 YT6rB">
+		<div class="COOzN MnWb5 YT6rB" style={style0}>
 			<div class="m0NAq xrWdL">
 				<div class="Igw0E IwRSH eGOV_ _4EzTm ItkAi" style={style1}>
-					<div aria-labelledby="f1f0b0ecf6d6bc4 f18aa3255d64c48" class="Igw0E rBNOH eGOV_ ybXk5_4EzTm">
+					<div aria-labelledby="f1f0b0ecf6d6bc4 f18aa3255d64c48" class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
 						<div class="Igw0E IwRSH eGOV_ _4EzTm yC0tu">
 							<div class="RR-M- _2NjG_" aria-disabled="true" role="button" tabindex="-1">
 								<canvas class="CfWVH" height="66" width="66" style={style2}></canvas>

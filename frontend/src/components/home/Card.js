@@ -19,7 +19,7 @@ const Card = () => {
 	}
 
 	return (
-		<article class="_8Rm4L M9sTE L_LMM SgTZ1 Tgarh ePUX4" role="presentation" tabindex="-1">
+		<article class="_8Rm4L M9sTE L_LMM SgTZ1 ePUX4" role="presentation" tabindex="-1">
 			<header class="Ppjfr UE9AK wdOqh">
 				<div class="Jv7Aj mArmR pZp3x">
 					<div class="RR-M- h5uC0 mrq0Z" aria-disabled="false" role="button" tabindex="0">
@@ -28,7 +28,8 @@ const Card = () => {
 							<img alt="deejaysoda님의 프로필 사진" class="_6q-tv" data-testid="user-avatar" draggable="false" src={Profile}/>
 						</span>
 					</div>
-					<div class="o-MQd z8cbW">
+				</div>
+				<div class="o-MQd z8cbW">
 						<div class=" RqtMr">
 							<div class="e1e1d">
 								<span class="Jv7Aj mArmR MqpiF">
@@ -39,11 +40,14 @@ const Card = () => {
 							</div>
 						</div>
 					</div>
-				</div>
 			</header>
 
-			<div className="_97aPb">
-				<img className="main_card_image" src={TestImage}/>
+			<div role="button" class="ZyFrc" tabindex="0">
+				<div class="eLAPa kPFhm">
+					<div class="KL4Bh">
+						<img className="FFVAD" src={TestImage}/>
+					</div>
+				</div>
 			</div>
 
 			<div class="eo2As ">

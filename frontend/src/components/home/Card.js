@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TestImage from './TestImage.jpg';
 import Profile from './profile.jpg';
 
 const Card = () => {
-	
+	const [goodFlag, setGoodFlag] = useState(false);
+	const [changeFlag, setChangeFlag] = useState(true);
+	const [comment, setComment] = useState(true);
+
 	const style1 = {
 		"position": "absolute",
 		"top": "-5px",
@@ -17,15 +20,42 @@ const Card = () => {
 		"height": "32px"
 	}
 
-	const enterEvent = (e) => {
-		const btn = document.getElementsByClassName('sqdOP');
-		
+	// 좋아요 이벤트
+	const goodEvent = () => {
+		if(goodFlag){
+			alert("좋아요 취소");
+			setGoodFlag(false);
+		}else{
+			alert("좋아요");
+			setGoodFlag(true);
+		}
+	}
+
+	// 댓글 달기 글자수 체크
+	const commentChangeEvent = (e) => {
 		if(e.target.value.length > 0){
 			alert("활성화");
-			btn.disabled = false;
+			setChangeFlag(false);
 		}else{
 			alert("비활성화");
-			btn.disabled = true;
+			setChangeFlag(true);
+		}
+
+		setComment(e.target.value);
+	}
+
+	// 댓글 달기(버튼클릭)
+	const addEvent = () => {
+		alert("댓글달기(버튼)");
+	}
+
+	// 댓글 달기(엔터)
+	const pressEnterEvent = (e) => {
+		alert("댓글달기(엔터)");
+		if (e.key === "Enter" && comment) {
+			e.preventDefault();
+			addEvent();
+			e.target.value = "";
 		}
 	}
 
@@ -41,7 +71,7 @@ const Card = () => {
 					</div>
 				</div>
 				<div class="o-MQd z8cbW">
-						<div class=" RqtMr">
+						<div class="RqtMr">
 							<div class="e1e1d">
 								<span class="Jv7Aj mArmR MqpiF">
 									<a class="sqdOP yWX7d _8A5w5 ZIAjV" href="/deejaysoda/" tabindex="0">
@@ -64,12 +94,17 @@ const Card = () => {
 			<div class="eo2As ">
 				<section class="ltpMr Slqrh">
 					<span class="fr66n">
-						<button class="wpO6b" type="button">
+						<button class="wpO6b" type="button" onClick={goodEvent}>
 							<div class="QBdPU">
-								<span class="">
+								<span class="FY9nT">
+									{goodFlag === false ?
 									<svg aria-label="좋아요" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24">
 										<path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
+									</svg> :
+									<svg aria-label="좋아요 취소" class="_8-yf5 " fill="#ed4956" height="24" viewBox="0 0 48 48" width="24">
+										<path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
 									</svg>
+									}
 								</span>
 							</div>
 						</button>
@@ -130,6 +165,7 @@ const Card = () => {
 							<div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_">
 								<a class="r8ZrO" href="/p/CHxvxEoFQU7/" tabindex="0">댓글 <span>54</span>개 모두 보기</a>
 							</div>
+							{/* 댓글 시작*/}
 							<div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm pjcA_">
 								<div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
 									<span class="Jv7Aj mArmR MqpiF">
@@ -177,6 +213,7 @@ const Card = () => {
 									</div>
 								</span>
 							</div>
+							{/* 댓글 종료*/}
 						</div>
 					</div>
 				</div>
@@ -188,8 +225,8 @@ const Card = () => {
 				<section class="sH9wk  _JgwE">
 					<div class="RxpZH">
 						<form class="X7cDz" method="POST">
-							<textarea aria-label="댓글 달기..." placeholder="댓글 달기..." class="Ypffh" autocomplete="off" autocorrect="off" onChange={enterEvent}></textarea>
-							<button class="sqdOP yWX7d y3zKF" disabled type="submit">게시</button>
+							<textarea aria-label="댓글 달기..." placeholder="댓글 달기..." class="Ypffh" autocomplete="off" autocorrect="off" onChange={commentChangeEvent} onKeyPress={pressEnterEvent}></textarea>
+							<button class="sqdOP yWX7d y3zKF" disabled={changeFlag} type="submit" onClick={addEvent}>게시</button>
 						</form>
 					</div>
 				</section>

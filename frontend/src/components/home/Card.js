@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import TestImage from './TestImage.jpg';
 import Profile from './profile.jpg';
+import CommentList from './CommentList';
+import Slider from "react-slick";
 
 const Card = () => {
-	const [goodFlag, setGoodFlag] = useState(false);
-	const [changeFlag, setChangeFlag] = useState(true);
-	const [comment, setComment] = useState(true);
+	const [state, setState] = useState({goodFlag : false, changeFlag : true, comment : true, commentLengthFlag : true});
+	
+	const settings = {
+		dots: true,
+		infinite: true,
+		draggable: false,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		appendDots: (dots) => (
+			<ul> {dots} </ul>
+		)
+	};
 
 	const style1 = {
 		"position": "absolute",
@@ -20,28 +32,27 @@ const Card = () => {
 		"height": "32px"
 	}
 
-	// 좋아요 이벤트
+	// 좋아요 클릭 이벤트
 	const goodEvent = () => {
-		if(goodFlag){
-			alert("좋아요 취소");
-			setGoodFlag(false);
+		if(state.goodFlag){
+			setState({...state, goodFlag : false});
 		}else{
-			alert("좋아요");
-			setGoodFlag(true);
+			setState({...state, goodFlag : true});
 		}
+	}
+
+	// 사진 더블클릭 이벤트(좋아요)
+	const imageGoodEvent = () => {
+		setState({...state, goodFlag : true});
 	}
 
 	// 댓글 달기 글자수 체크
 	const commentChangeEvent = (e) => {
 		if(e.target.value.length > 0){
-			alert("활성화");
-			setChangeFlag(false);
+			setState({...state, changeFlag : false});
 		}else{
-			alert("비활성화");
-			setChangeFlag(true);
+			setState({...state, changeFlag : true});
 		}
-
-		setComment(e.target.value);
 	}
 
 	// 댓글 달기(버튼클릭)
@@ -51,12 +62,16 @@ const Card = () => {
 
 	// 댓글 달기(엔터)
 	const pressEnterEvent = (e) => {
-		alert("댓글달기(엔터)");
-		if (e.key === "Enter" && comment) {
+		if (e.key === "Enter" && state.comment) {
 			e.preventDefault();
 			addEvent();
 			e.target.value = "";
 		}
+	}
+
+	// 더보기
+	const moreClick = () => {
+		setState({...state, commentLengthFlag : false});
 	}
 
 	return (
@@ -65,7 +80,7 @@ const Card = () => {
 				<div class="Jv7Aj mArmR pZp3x">
 					<div class="RR-M- h5uC0 mrq0Z" aria-disabled="false" role="button" tabindex="0">
 						<canvas class="CfWVH" height="42" width="42" style={style1}></canvas>
-						<span class="_2dbep " role="link" tabindex="-1" style={style2}>
+						<span class="_2dbep" role="link" tabindex="-1" style={style2}>
 							<img alt="deejaysoda님의 프로필 사진" class="_6q-tv" data-testid="user-avatar" draggable="false" src={Profile}/>
 						</span>
 					</div>
@@ -83,21 +98,49 @@ const Card = () => {
 					</div>
 			</header>
 
-			<div role="button" class="ZyFrc" tabindex="0">
-				<div class="eLAPa kPFhm">
-					<div class="KL4Bh">
-						<img className="FFVAD" src={TestImage}/>
+			<div onDoubleClick={imageGoodEvent}>
+				<Slider {...settings}>
+					<div class="eLAPa kPFhm">
+						<div class="KL4Bh">
+							<img className="FFVAD" src={TestImage}/>
+						</div>
 					</div>
-				</div>
+					<div class="eLAPa kPFhm">
+						<div class="KL4Bh">
+							<img className="FFVAD" src={TestImage}/>
+						</div>
+					</div>
+					<div class="eLAPa kPFhm">
+						<div class="KL4Bh">
+							<img className="FFVAD" src={TestImage}/>
+						</div>
+					</div>
+					<div class="eLAPa kPFhm">
+						<div class="KL4Bh">
+							<img className="FFVAD" src={TestImage}/>
+						</div>
+					</div>
+					<div class="eLAPa kPFhm">
+						<div class="KL4Bh">
+							<img className="FFVAD" src={TestImage}/>
+						</div>
+					</div>
+				</Slider>
+
+				{/* {state.goodFlag === true ?
+					<div class="_6jUvg">
+						<span class="Y9j-N coreSpriteFeedLikeBig"></span>
+					</div>
+				: <div></div>} */}
 			</div>
 
-			<div class="eo2As ">
+			<div class="eo2As">
 				<section class="ltpMr Slqrh">
 					<span class="fr66n">
 						<button class="wpO6b" type="button" onClick={goodEvent}>
 							<div class="QBdPU">
 								<span class="FY9nT">
-									{goodFlag === false ?
+									{state.goodFlag === false ?
 									<svg aria-label="좋아요" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24">
 										<path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
 									</svg> :
@@ -130,7 +173,7 @@ const Card = () => {
 							<div aria-disabled="false" role="button" tabindex="0">
 								<button class="wpO6b" type="button">
 									<div class="QBdPU">
-										<svg aria-label="저장" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24">
+										<svg aria-label="저장" class="_8-yf5" fill="#262626" height="24" viewBox="0 0 48 48" width="24">
 											<path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path>
 										</svg>
 									</div>
@@ -148,72 +191,31 @@ const Card = () => {
 				</section>
 				<div class="EtaWk">
 					<div class="Igw0E IwRSH eGOV_ _4EzTm">
-						<div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_ ">
+						<div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_">
 							<div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
-								<span class="Jv7Aj mArmR MqpiF  ">
+								<span class="Jv7Aj mArmR MqpiF">
 									<a class="FPmhX notranslate MBL3Z" title="deejaysoda" href="/deejaysoda/" tabindex="0">deejaysoda</a>
 								</span>&nbsp;
+								{state.commentLengthFlag === true ?
 								<span class="_8Pl3R">
 									<span>슈팅스타챌린지 비디오 다들 너무 이쁘고 귀여워!!😭💖💕</span>
 									<span class="_2UvmX">...&nbsp;
-										<button class="sXUSN">더 보기</button>
+										<button class="sXUSN" onClick={moreClick}>더 보기</button>
 									</span>
-								</span>
+								</span> :
+								<span class="_8Pl3R">
+									<span>슈팅스타챌린지 비디오 다들 너무 이쁘고 귀여워!!😭💖💕<br></br>
+									Luv all the <a class=" xil3i" href="/explore/tags/shootingstarchallenge/" tabindex="0">#ShootingStarChallenge</a> vids 🌟💫💕<br></br><br></br>
+									🎵DJ SODA - SHOOTING STAR</span>
+								</span>}
 							</div>
 						</div>
 						<div>
 							<div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_">
 								<a class="r8ZrO" href="/p/CHxvxEoFQU7/" tabindex="0">댓글 <span>54</span>개 모두 보기</a>
 							</div>
-							{/* 댓글 시작*/}
-							<div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm pjcA_">
-								<div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
-									<span class="Jv7Aj mArmR MqpiF">
-										<a class="FPmhX notranslate MBL3Z" title="rudybundini" href="/rudybundini/" tabindex="0">rudybundini</a>
-									</span>&nbsp;
-									<span class="_8Pl3R">
-										<span>
-											<a class="notranslate" href="/ncaptraa/" tabindex="0">@ncaptraa</a> 🙄
-										</span>
-									</span>
-								</div>
-								<span>
-									<div class="_2ic5v">
-										<button class="wpO6b ZQScA" type="button">
-											<div class="QBdPU ">
-												<span class="">
-													<svg aria-label="좋아요" class="_8-yf5 " fill="#262626" height="12" viewBox="0 0 48 48" width="12">
-														<path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-													</svg>
-												</span>
-											</div>
-										</button>
-									</div>
-								</span>
-							</div>
-							<div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm pjcA_">
-								<div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
-									<span class="Jv7Aj mArmR MqpiF  ">
-										<a class="FPmhX notranslate MBL3Z" title="azaygorontalo" href="/azaygorontalo/" tabindex="0">azaygorontalo</a></span>&nbsp;
-									<span class="_8Pl3R">
-										<span>Hajar masbo</span>
-									</span>
-								</div>
-								<span>
-									<div class="_2ic5v">
-										<button class="wpO6b ZQScA" type="button">
-											<div class="QBdPU ">
-												<span class="">
-													<svg aria-label="좋아요" class="_8-yf5 " fill="#262626" height="12" viewBox="0 0 48 48" width="12">
-														<path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-													</svg>
-												</span>
-											</div>
-										</button>
-									</div>
-								</span>
-							</div>
-							{/* 댓글 종료*/}
+							{/* 댓글 컴포넌트 */}
+							<CommentList />
 						</div>
 					</div>
 				</div>
@@ -226,7 +228,7 @@ const Card = () => {
 					<div class="RxpZH">
 						<form class="X7cDz" method="POST">
 							<textarea aria-label="댓글 달기..." placeholder="댓글 달기..." class="Ypffh" autocomplete="off" autocorrect="off" onChange={commentChangeEvent} onKeyPress={pressEnterEvent}></textarea>
-							<button class="sqdOP yWX7d y3zKF" disabled={changeFlag} type="submit" onClick={addEvent}>게시</button>
+							<button class="sqdOP yWX7d y3zKF" disabled={state.changeFlag} type="submit" onClick={addEvent}>게시</button>
 						</form>
 					</div>
 				</section>

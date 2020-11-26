@@ -24,78 +24,78 @@ const Right = () => {
 	}
 	
 	return (
-		<div class="COOzN MnWb5 YT6rB" style={style0}>
-			<div class="m0NAq xrWdL">
-				<div class="Igw0E IwRSH eGOV_ _4EzTm ItkAi" style={style1}>
-					<div aria-labelledby="f1f0b0ecf6d6bc4 f18aa3255d64c48" class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
-						<div class="Igw0E IwRSH eGOV_ _4EzTm yC0tu">
-							<div class="RR-M- _2NjG_" aria-disabled="true" role="button" tabindex="-1">
-								<canvas class="CfWVH" height="66" width="66" style={style2}></canvas>
-								<a class="_2dbep qNELH kIKUG" href="/is_yoon/" tabindex="0" style={style3}>
+		<div className="COOzN MnWb5 YT6rB" style={style0}>
+			<div className="m0NAq xrWdL">
+				<div className="Igw0E IwRSH eGOV_ _4EzTm ItkAi" style={style1}>
+					<div aria-labelledby="f1f0b0ecf6d6bc4 f18aa3255d64c48" className="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
+						<div className="Igw0E IwRSH eGOV_ _4EzTm yC0tu">
+							<div className="RR-M- _2NjG_" aria-disabled="true" role="button" tabindex="-1">
+								<canvas className="CfWVH" height="66" width="66" style={style2}></canvas>
+								<a className="_2dbep qNELH kIKUG" href="/is_yoon/" tabindex="0" style={style3}>
 									<img className="main_card_image" src={Profile}/>
 								</a>
 							</div>
 						</div>
-						<div class="Igw0E IwRSH YBx95 vwCYk">
-							<div class="Igw0E IwRSH eGOV_ _4EzTm" id="f1f0b0ecf6d6bc4">
-								<div class="_7UhW9 xLCgt MMzan KV-D4 fDxYl">
-									<div class="Igw0E IwRSH eGOV_ ybXk5 vwCYk n4cjz">
-										<a class="gmFkV" href="/is_yoon/" tabindex="0">is_yoon</a>
+						<div className="Igw0E IwRSH YBx95 vwCYk">
+							<div className="Igw0E IwRSH eGOV_ _4EzTm" id="f1f0b0ecf6d6bc4">
+								<div className="_7UhW9 xLCgt MMzan KV-D4 fDxYl">
+									<div className="Igw0E IwRSH eGOV_ ybXk5 vwCYk n4cjz">
+										<a className="gmFkV" href="/is_yoon/" tabindex="0">is_yoon</a>
 									</div>
 								</div>
 							</div>
-						<div class="Igw0E IwRSH eGOV_ _4EzTm DhRcB" id="f18aa3255d64c48">
-							<div class="_7UhW9 xLCgt MMzan _0PwGv fDxYl">
-								<div class="Igw0E IwRSH eGOV_ vwCYk n4cjz">
-									<div class="_7UhW9 xLCgt MMzan _0PwGv fDxYl">윤일석</div>
+						<div className="Igw0E IwRSH eGOV_ _4EzTm DhRcB" id="f18aa3255d64c48">
+							<div className="_7UhW9 xLCgt MMzan _0PwGv fDxYl">
+								<div className="Igw0E IwRSH eGOV_ vwCYk n4cjz">
+									<div className="_7UhW9 xLCgt MMzan _0PwGv fDxYl">윤일석</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="Igw0E rBNOH YBx95 ybXk5 _4EzTm soMvl">
-						<button class="sqdOP yWX7d y3zKF" type="button">
-							<div class="_7UhW9 PIoXz qyrsm uL8Hv">전환</div>
+					<div className="Igw0E rBNOH YBx95 ybXk5 _4EzTm soMvl">
+						<button className="sqdOP yWX7d y3zKF" type="button">
+							<div className="_7UhW9 PIoXz qyrsm uL8Hv">전환</div>
 						</button>
 					</div>
 				</div>
 			</div>
 			</div>
-			<div class="SkY6J">
-				<nav class="uxKLF">
-					<ul class="ixdEe _9Rlzb">
-						<li class="K5OFK">
-							<a class="l93RR" href="https://about.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">소개</a>
+			<div className="SkY6J">
+				<nav className="uxKLF">
+					<ul className="ixdEe _9Rlzb">
+						<li className="K5OFK">
+							<a className="l93RR" href="https://about.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">소개</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="https://help.instagram.com/">도움말</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="https://help.instagram.com/">도움말</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="https://about.instagram.com/blog/">홍보 센터</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="https://about.instagram.com/blog/">홍보 센터</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/developer/">API</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/developer/">API</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/about/jobs/">채용 정보</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/about/jobs/">채용 정보</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/legal/privacy/">개인정보처리방침</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/legal/privacy/">개인정보처리방침</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR _vfM2" href="/legal/terms/">약관</a>
+						<li className="K5OFK">
+							<a className="l93RR _vfM2" href="/legal/terms/">약관</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/explore/locations/">위치</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/explore/locations/">위치</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/directory/profiles/">인기 계정</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/directory/profiles/">인기 계정</a>
 						</li>
-						<li class="K5OFK">
-							<a class="l93RR" href="/directory/hashtags/">해시태그</a>
+						<li className="K5OFK">
+							<a className="l93RR" href="/directory/hashtags/">해시태그</a>
 						</li>
-						<li class="K5OFK">
-							<span class="_3G4x7     tN4Ei l93RR">언어
-								<select aria-label="표시 언어 변경" class="hztqj">
+						<li className="K5OFK">
+							<span className="_3G4x7 tN4Ei l93RR">언어
+								<select aria-label="표시 언어 변경" className="hztqj">
 									<option value="af">Afrikaans</option>
 									<option value="cs">Čeština</option>
 									<option value="da">Dansk</option>
@@ -149,7 +149,7 @@ const Right = () => {
 						</li>
 					</ul>
 				</nav>
-				<span class="DINPA">© 2020 Instagram from Facebook</span>
+				<span className="DINPA">© 2020 Instagram from Facebook</span>
 			</div>
 		</div>
 	);

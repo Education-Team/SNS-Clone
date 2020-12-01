@@ -14,7 +14,7 @@ const Main = () => {
 			<div className="main_block">
 				<div className="main_list_block">
 					<div style={cardListStyle}>
-						{/* 여기서부터 데이터 가져오기 */}
+						{/* 여기서부터 데이터 가져오기 리스트당 6개 카드씩 이기때문에 카드리스트도 분할 */}
 						<CardList />
 						<CardList />
 					</div>

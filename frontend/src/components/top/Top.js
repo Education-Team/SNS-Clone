@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import testInstarImg from './instar.png';
 import testImg from './profile.jpg';
+import styled from 'styled-components';
 
 
 const Top = () => {

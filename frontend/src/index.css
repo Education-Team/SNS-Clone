@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-
 /* reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -58,6 +57,11 @@ table {
 	border-spacing: 0;
 }
 
+/* root */
+#root {
+	z-index : 0;
+}
+
 /* global */
 html, body, #root {
 	height: 100%;
@@ -100,4 +104,8 @@ article, div, footer, header, main, nav, section {
     margin: 0;
     padding: 0;
     position: relative;
+}
+
+:focus:not([data-focus-visible-added]) {
+    outline: 0;
 }

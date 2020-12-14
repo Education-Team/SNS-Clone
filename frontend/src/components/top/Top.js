@@ -34,18 +34,18 @@ const Top = () => {
 				<div className="top_container_fixed">
 					<div className="top_block">
 						<div className="top_logo">
-							<div style={{"flex-direction": "row"}}>
+							<div style={{"flexDirection": "row"}}>
 								<img style={{
-										"margin-top": "7px",
-										"max-height": "100%", 
-										"max-width": "100%", 
-										"object-fit": "contain"
+										"marginTop": "7px",
+										"maxHeight": "100%", 
+										"maxWidth": "100%", 
+										"objectFit": "contain"
 									}}
 									src={testInstarImg}/>
 							</div>
 						</div>
 						<div className="top_search">
-							<input autocapitalize="none" placeholder="검색"/>
+							<input autoCapitalize="none" placeholder="검색"/>
 						</div>
 						<div className="top_button_list">
 							<div className="top_button_block">

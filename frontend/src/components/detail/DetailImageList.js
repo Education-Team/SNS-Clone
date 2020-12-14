@@ -2,28 +2,25 @@ import React from 'react';
 import './style.css'
 import DetailImageView from './DetailImageView';
 
-const DetailImageList = () => {
+const DetailImageList = ({resources}) => {
 	return (
 		<div className="detail_image_list_block">
 			<div className="detail_image_list_block2">
-				<div className="detail_image_list_block3" style={{"padding-bottom": "100%"}}></div>
+				<div className="detail_image_list_block3" style={{"paddingBottom": "100%"}}></div>
 				<div className="detail_image_list_line_container">
 					<div className="detail_image_list_line_block">
 						<div className="detail_image_list_line_block2">
 							<div className="detail_image_list_line_block3">
 								<ul className="detail_image_list_line_ul">
-									<li style={{"transform": "translateX(1199px)", "width": "1px"}}></li>
+									<li style={{"transform": `translateX(${(resources.length*600)-1}px)`, "width": "1px"}}></li>
 									{/*여기서 이미지 리스트 반복*/}
-									<li className="detail_image_list_line_li" style={{"transform": "translateX(0px)"}}>
-										<div className="detail_image_list_line_li_view" style={{"width": "600px"}}>
-											<DetailImageView/>
-										</div>
-									</li>
-									<li className="detail_image_list_line_li" style={{"transform": "translateX(600px)"}}>
-										<div className="detail_image_list_line_li_view" style={{"width": "600px"}}>
-											<DetailImageView/>
-										</div>
-									</li>
+									{resources.map((_item,_index) => (
+										<li className="detail_image_list_line_li" style={{"transform": `translateX(${_index*600}px)`}} key={_item.id}>
+											<div className="detail_image_list_line_li_view" style={{"width": "600px"}}>
+												<DetailImageView imgurl={_item.url}/>
+											</div>
+										</li>
+									))}
 								</ul>
 							</div>
 						</div>

@@ -4,7 +4,7 @@ import CardList from './CardList';
 
 const Main = () => {
 	const cardListStyle = {
-		"flex-direction": "column",
+		"flexDirection": "column",
     	"padding-bottom": "0px",
     	"padding-top": "0px"
 	}

@@ -2,17 +2,17 @@ import React from 'react';
 import DetailProfile from './DetailProfile';
 import './style.css';
 
-const DetailHead = () => {
+const DetailHead = ({data}) => {
 	
 	return (
 		<>
-			<DetailProfile/>
+			<DetailProfile imgurl={data.profile_img_url}/>
 			<div className="detail_head_profile_name_container">
 				<div className="detail_head_profile_name_block">
 					<div className="detail_head_profile_name_root">
 						<span className="detail_head_profile_name_span">
 							<a href="#" className="detail_head_profile_name">
-								TestName
+								{data.username}
 							</a>
 						</span>
 					</div>

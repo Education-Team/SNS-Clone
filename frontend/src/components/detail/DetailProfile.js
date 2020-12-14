@@ -1,5 +1,4 @@
 import React from 'react'
-import TestImage from './TestImage.jpg';
 import './style.css';
 
 const DetailProfile = (props) => {
@@ -15,9 +14,9 @@ const DetailProfile = (props) => {
 	return (
 		<div className="detail_head_profile_image_container">
 			<div className={`detail_head_profile_image_block ${props.chk ? 'detail_profile_margin' : ''}`} aria-disabled="true">
-				<canvas class="detail_head_profile_image_canvas" height="42" width="42" style={imageCanvas}></canvas>
+				<canvas className="detail_head_profile_image_canvas" height="42" width="42" style={imageCanvas}></canvas>
 				<a className="detail_head_profile_image_root" style={{"width": "32px", "height": "32px"}}>
-					<img className="detail_head_profile_image" data-testid="user-avatar" draggable="false" src={TestImage}/>
+					<img className="detail_head_profile_image" data-testid="user-avatar" draggable="false" src={props.imgurl}/>
 				</a>
 			</div>
 		</div>

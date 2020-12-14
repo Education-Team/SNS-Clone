@@ -48,7 +48,8 @@ const Home = () => {
     {
       index: 1,
       id: 'rudybundini',
-      comment: '<a className="notranslate" href="/ncaptraa/" tabindex="0">@ncaptraa</a> 🙄',
+      comment:
+        '<a className="notranslate" href="/ncaptraa/" tabindex="0">@ncaptraa</a> 🙄',
     },
     {
       index: 2,

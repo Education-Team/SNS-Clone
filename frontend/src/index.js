@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // react-slick css
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // import App from './App';
 import Top from './components/top/Top';
@@ -17,7 +17,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <Top />
-	  <Home />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root')
 );

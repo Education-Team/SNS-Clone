@@ -4,10 +4,10 @@ import TestImage from './TestImage.jpg';
 import Profile from './profile.jpg';
 import CommentList from './CommentList';
 
-const Card = ({ cardData, commentData }) => {
+const Card = ({ cardData }) => {
   const { index, id, contents, like, commentCnt } = cardData;
 
-  // const [comment, setComment] = useState({ id: '', comment: '' });
+  const [comment, setComment] = useState({ comment: '' });
 
   const [state, setState] = useState({
     goodFlag: false,
@@ -18,7 +18,7 @@ const Card = ({ cardData, commentData }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     draggable: false,
     speed: 500,
     slidesToShow: 1,
@@ -57,6 +57,7 @@ const Card = ({ cardData, commentData }) => {
   const commentChangeEvent = e => {
     if (e.target.value.length > 0) {
       setState({ ...state, changeFlag: false });
+      setComment({ comment: e.target.value });
     } else {
       setState({ ...state, changeFlag: true });
     }
@@ -64,16 +65,15 @@ const Card = ({ cardData, commentData }) => {
 
   // 댓글 달기(버튼클릭)
   const addEvent = e => {
-    const { name, value } = e.target;
-    // setComment({ ...comment, [name]: value });
+    alert(`댓글 : ${comment.comment}`);
+    e.preventDefault();
   };
 
   // 댓글 달기(엔터)
   const pressEnterEvent = e => {
     if (e.key === 'Enter' && state.comment) {
       e.preventDefault();
-      // addEvent(e);
-      // setComment(...commentData, e.target.value);
+      addEvent(e);
       e.target.value = '';
     }
   };
@@ -211,40 +211,6 @@ const Card = ({ cardData, commentData }) => {
               </div>
             </button>
           </span>
-          <button className="wpO6b" type="button">
-            <div className="QBdPU">
-              <svg
-                aria-label="게시물 공유"
-                className="_8-yf5 "
-                fill="#262626"
-                height="24"
-                viewBox="0 0 48 48"
-                width="24"
-              >
-                <path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z" />
-              </svg>
-            </div>
-          </button>
-          <span className="wmtNn">
-            <div>
-              <div aria-disabled="false" role="button" tabIndex="0">
-                <button className="wpO6b" type="button">
-                  <div className="QBdPU">
-                    <svg
-                      aria-label="저장"
-                      className="_8-yf5"
-                      fill="#262626"
-                      height="24"
-                      viewBox="0 0 48 48"
-                      width="24"
-                    >
-                      <path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z" />
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </span>
         </section>
         <section className="EDfFK ygqzn">
           <div className="Igw0E IwRSH eGOV_ ybXk5 vwCYk">
@@ -297,7 +263,7 @@ const Card = ({ cardData, commentData }) => {
                 </a>
               </div>
               {/* 댓글리스트 컴포넌트 */}
-              <CommentList commentData={commentData} />
+              <CommentList commentData={cardData.comment} />
             </div>
           </div>
         </div>

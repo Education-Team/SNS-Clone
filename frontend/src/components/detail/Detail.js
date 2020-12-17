@@ -55,7 +55,7 @@ const Detail = () => {
 	return (
 		<Modal>
 			<div className="dialog_container">
-				{/*사진크기 600일경우 style={{"maxWidth": "815px"}}*/}
+				{/* 사진크기 600일경우 style={{"maxWidth": "815px"}} */}
 				<div className="detail_container">
 					<article className="detail_article_block">
 						<header className="detail_header_block">

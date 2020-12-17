@@ -4,7 +4,7 @@ module.exports = {
     //코드 마지막에 세미콜른이 있게 formatting
     semi: true,
     //탭의 사용을 금하고 스페이스바 사용으로 대체하게 formatting
-    useTabs: false,
+    useTabs: true,
     // 들여쓰기 너비는 2칸
     tabWidth: 2,
     // 객체나 배열을 작성 할 때, 원소 혹은 key-valueㅇ의 맨 뒤에 있는 것에도 쉼표를 붙임

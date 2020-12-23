@@ -9,16 +9,17 @@ const Portal = ({ id = 'modal', children, className }) => {
 		rootElement = document.createElement('div');
 		rootElement.setAttribute('id', id);
 		document.body.appendChild(rootElement);
+		document.body.style.overflow = 'hidden';
 	}
 	rootElement.setAttribute('class', className);
 
-	// useEffect(() => {
-	// 	return () => {
-	// 		const _rootElement = document.getElementById(id);
-	// 		if(_rootElement !== null)
-	// 			document.body.removeChild(_rootElement);
-	// 	}
-	// },[]);
+	useEffect(() => {
+		return () => {
+			const getRootElement = document.getElementById(id);
+			if (getRootElement !== null) document.body.removeChild(getRootElement);
+			document.body.style.overflow = '';
+		};
+	}, []);
 
 	return createPortal(children, rootElement);
 };

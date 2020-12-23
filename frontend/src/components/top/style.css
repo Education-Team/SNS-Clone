@@ -68,6 +68,11 @@
 	font-size: 16px;
 }
 
+.top_button_svg {
+	display: block;
+    position: relative;
+}
+
 .top_button_list {
 	align-content: center;
 	align-items: center;

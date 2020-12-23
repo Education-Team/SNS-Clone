@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import TestImage from './TestImage.jpg';
 
 const Card = () => {
 	const [viewflag, setViewflag] = useState(false);
 
 	const aTagTestStyle = {
-		'cursor': 'pointer',
-		'color': 'rgba(var(--fe0,0,55,107),1)',
-		'text-decoration': 'none',
+		cursor: 'pointer',
+		color: 'rgba(var(--fe0,0,55,107),1)',
+		textDecoration: 'none',
 	};
 
 	const mouseEnterEvent = () => {
@@ -18,10 +19,15 @@ const Card = () => {
 		setViewflag(false);
 	};
 
+	const testOnClick = e => {
+		e.preventDefault();
+		window.history.pushState({}, null, '/detail');
+	};
+
 	return (
 		<div className="main_card_container">
 			<div className="main_card_block" style={{ width: '100%' }}>
-				<a href="/" style={aTagTestStyle}>
+				<Link to="/detail" style={aTagTestStyle} onClick={testOnClick}>
 					<div className="main_card_image_container">
 						<div className="main_card_image_block">
 							<img className="main_card_image" src={TestImage} alt="img" />
@@ -48,7 +54,7 @@ const Card = () => {
 					{viewflag && (
 						<div
 							className="main_card_goodcomment_count_block"
-							style={{ 'background-color': 'rgba(0, 0, 0, 0.3)' }}
+							style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
 							onMouseLeave={mouseLeaveEvent}
 						>
 							<ul className="main_card_goodcomment_count_ul">
@@ -63,7 +69,7 @@ const Card = () => {
 							</ul>
 						</div>
 					)}
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

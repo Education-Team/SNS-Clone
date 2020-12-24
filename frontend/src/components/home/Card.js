@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
+import * as api from '../../lib/api';
 import TestImage from './TestImage.jpg';
 import Profile from './profile.jpg';
 import CommentList from './CommentList';
@@ -62,8 +63,15 @@ const Card = ({ cardData }) => {
 	};
 
 	// 사진 더블클릭 이벤트(좋아요)
-	const imageGoodEvent = () => {
+	const imageGoodEvent = async () => {
 		setState({ ...state, goodFlag: true });
+		try {
+			const data = await api.getPosts();
+			alert(data[0].author);
+		} catch (err) {
+			console.log('에러발생');
+			console.log(err);
+		}
 	};
 
 	// 댓글 달기 글자수 체크

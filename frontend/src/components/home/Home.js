@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './style.css';
 import CardList from './CardList';
 import Right from './Right';
+import * as api from '../../lib/api';
+
+function todoListReducer(state, action) {
+	switch (action.type) {
+		case 'INIT':
+			return action.data;
+		default:
+			return '';
+	}
+	// return state;
+}
 
 const Home = () => {
+	const [listitem, dispatch] = useReducer(todoListReducer, '');
+	const aaData = async () => {
+		try {
+			const data = await api.getPosts();
+			dispatch({ type: 'INIT', data });
+		} catch (err) {
+			console.log('에러발생');
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		aaData();
+	}, []);
+
 	const cardData = [
 		{
 			index: 1,
@@ -73,7 +99,7 @@ const Home = () => {
 		<home className="SCxLW o64aR">
 			<section className="_1SP8R C3uDN j9XKR">
 				{/* 여기서부터 데이터 가져오기 */}
-				<CardList cardData={cardData} />
+				{/* <CardList cardData={listitem} /> */}
 				<Right />
 			</section>
 		</home>

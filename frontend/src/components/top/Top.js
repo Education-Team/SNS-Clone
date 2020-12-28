@@ -1,8 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './style.css';
 import testInstarImg from './instar.png';
 import testImg from './profile.jpg';
+
+// 테스트
+// const OldSchoolMenuLink = ({ children, to, exact }) => (
+//   <Route path={to} exact={exact} children={({ match }) => (
+//     <div className={match ? 'active' : ''}>
+//       {match ? '> ' : ''}
+//       <Link to={to}>
+//         {children}
+//       </Link>
+//     </div>
+//   )} />
+// )
 
 const Top = () => {
 	const imgSize = {
@@ -22,18 +34,20 @@ const Top = () => {
 				<div className="top_container_fixed">
 					<div className="top_block">
 						<div className="top_logo">
-							<div style={{ flexDirection: 'row' }}>
-								<img
-									style={{
-										marginTop: '7px',
-										maxHeight: '100%',
-										maxWidth: '100%',
-										objectFit: 'contain',
-									}}
-									src={testInstarImg}
-									alt="img"
-								/>
-							</div>
+							<Link to="/" tabIndex="0">
+								<div style={{ flexDirection: 'row' }}>
+									<img
+										style={{
+											marginTop: '7px',
+											maxHeight: '100%',
+											maxWidth: '100%',
+											objectFit: 'contain',
+										}}
+										src={testInstarImg}
+										alt="img"
+									/>
+								</div>
+							</Link>
 						</div>
 						<div className="top_search">
 							<input autoCapitalize="none" placeholder="검색" />
@@ -41,36 +55,58 @@ const Top = () => {
 						<div className="top_button_list">
 							<div className="top_button_block">
 								<div className="top_button">
-									<Link to="/" tabIndex="0">
-										<svg
-											aria-label="홈"
-											className="top_button_svg"
-											fill="#262626"
-											height="22"
-											viewBox="0 0 48 48"
-											width="22"
-										>
-											<path d="M45.3 48H30c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2-4.6-4.6-4.6s-4.6 2-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.5-.6 2.1 0l21.5 21.5c.4.4.6 1.1.3 1.6 0 .1-.1.1-.1.2v22.8c.1.8-.6 1.5-1.4 1.5zm-13.8-3h12.3V23.4L24 3.6l-20 20V45h12.3V34.2c0-4.3 3.3-7.6 7.6-7.6s7.6 3.3 7.6 7.6V45z" />
-										</svg>
-									</Link>
+									<Route path="/" exact>
+										{({ match }) => {
+											return (
+												<Link to="/" tabIndex="0">
+													<svg
+														aria-label="홈"
+														className="top_button_svg"
+														fill="#262626"
+														height="22"
+														viewBox="0 0 48 48"
+														width="22"
+													>
+														{match ? (
+															<path d="M45.5 48H30.1c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2.1-4.6-4.6-4.6s-4.6 2.1-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.6-.6 2.1 0l21.5 21.5c.3.3.4.7.4 1.1v23.5c.1.8-.6 1.5-1.4 1.5z" />
+														) : (
+															<path d="M45.3 48H30c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2-4.6-4.6-4.6s-4.6 2-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.5-.6 2.1 0l21.5 21.5c.4.4.6 1.1.3 1.6 0 .1-.1.1-.1.2v22.8c.1.8-.6 1.5-1.4 1.5zm-13.8-3h12.3V23.4L24 3.6l-20 20V45h12.3V34.2c0-4.3 3.3-7.6 7.6-7.6s7.6 3.3 7.6 7.6V45z" />
+														)}
+													</svg>
+												</Link>
+											);
+										}}
+									</Route>
 								</div>
 								<div className="top_button">
-									<Link to="/explore/" tabIndex="0">
-										<svg
-											aria-label="사람 찾기"
-											className="top_button_svg"
-											fill="#262626"
-											height="22"
-											viewBox="0 0 48 48"
-											width="22"
-										>
-											<path
-												clipRule="evenodd"
-												d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm0 45C12.4 45 3 35.6 3 24S12.4 3 24 3s21 9.4 21 21-9.4 21-21 21zm10.2-33.2l-14.8 7c-.3.1-.6.4-.7.7l-7 14.8c-.3.6-.2 1.3.3 1.7.3.3.7.4 1.1.4.2 0 .4 0 .6-.1l14.8-7c.3-.1.6-.4.7-.7l7-14.8c.3-.6.2-1.3-.3-1.7-.4-.5-1.1-.6-1.7-.3zm-7.4 15l-5.5-5.5 10.5-5-5 10.5z"
-												fillRule="evenodd"
-											/>
-										</svg>
-									</Link>
+									<Route path="/explore">
+										{({ match }) => (
+											<Link to="/explore" tabIndex="0">
+												<svg
+													aria-label="사람 찾기"
+													className="top_button_svg"
+													fill="#262626"
+													height="22"
+													viewBox="0 0 48 48"
+													width="22"
+												>
+													{match ? (
+														<path
+															clipRule="evenodd"
+															d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm12.2 13.8l-7 14.8c-.1.3-.4.6-.7.7l-14.8 7c-.2.1-.4.1-.6.1-.4 0-.8-.2-1.1-.4-.4-.4-.6-1.1-.3-1.7l7-14.8c.1-.3.4-.6.7-.7l14.8-7c.6-.3 1.3-.2 1.7.3.5.4.6 1.1.3 1.7zm-15 7.4l-5 10.5 10.5-5-5.5-5.5z"
+															fillRule="evenodd"
+														/>
+													) : (
+														<path
+															clipRule="evenodd"
+															d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm0 45C12.4 45 3 35.6 3 24S12.4 3 24 3s21 9.4 21 21-9.4 21-21 21zm10.2-33.2l-14.8 7c-.3.1-.6.4-.7.7l-7 14.8c-.3.6-.2 1.3.3 1.7.3.3.7.4 1.1.4.2 0 .4 0 .6-.1l14.8-7c.3-.1.6-.4.7-.7l7-14.8c.3-.6.2-1.3-.3-1.7-.4-.5-1.1-.6-1.7-.3zm-7.4 15l-5.5-5.5 10.5-5-5 10.5z"
+															fillRule="evenodd"
+														/>
+													)}
+												</svg>
+											</Link>
+										)}
+									</Route>
 								</div>
 								<div className="top_button">
 									<span style={imgSize} onClick={profileClick}>

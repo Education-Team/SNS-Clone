@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Modal from '../utils/Modal';
 import DetailHead from './DetailHead';
 import DetailImageList from './DetailImageList';
@@ -49,11 +50,17 @@ const DetailData = {
 	],
 };
 
-const Detail = ({ history }) => {
+const Detail = ({ history, modal, onItemClick }) => {
 	const [data, setData] = useState(DetailData);
+	const subhistory = history || useHistory();
 
 	const onExitClick = () => {
-		history.goBack();
+		if (modal) {
+			subhistory.replace('/explore');
+			onItemClick();
+		} else {
+			subhistory.push('/');
+		}
 	};
 
 	return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TestImage from './TestImage.jpg';
 
-const Card = () => {
+const Card = props => {
 	const [viewflag, setViewflag] = useState(false);
 
 	const aTagTestStyle = {
@@ -19,15 +19,16 @@ const Card = () => {
 		setViewflag(false);
 	};
 
-	const testOnClick = e => {
+	const btnOnClick = e => {
 		e.preventDefault();
 		window.history.pushState({}, null, '/detail');
+		props.onItemClick();
 	};
 
 	return (
 		<div className="main_card_container">
 			<div className="main_card_block" style={{ width: '100%' }}>
-				<Link to="/detail" style={aTagTestStyle} onClick={testOnClick}>
+				<Link to="/detail" style={aTagTestStyle} onClick={btnOnClick}>
 					<div className="main_card_image_container">
 						<div className="main_card_image_block">
 							<img className="main_card_image" src={TestImage} alt="img" />

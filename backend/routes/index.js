@@ -81,7 +81,7 @@ module.exports = function (app, Post) {
       { new: true }, 
       function(err, node) {
         if (err) { return handleError(res, err); }
-        return res.status(200).send("성공");
+        return res.status(200).send("靹标车");
       });
   });
 
@@ -97,7 +97,7 @@ module.exports = function (app, Post) {
       { new: true }, 
       function(err, node) {
         if (err) { return handleError(res, err); }
-        return res.status(200).send("성공");
+        return res.status(200).send("靹标车");
       });
   });
 
@@ -114,4 +114,24 @@ module.exports = function (app, Post) {
       res.status(204).end();
     })
   });
+	
+	
+	
+	
+	
+	
+  app.get("/test/:id", function (req, res) {
+    Post.findOneAndUpdate(
+		{_id : req.params.id}, 
+		{$inc:  { 
+			 		likes_count : 1
+				} 
+		},
+		{ new: true }, 
+		function (err, posts) {
+		  if (err) return res.status(500).send({ error: "database failure" });
+		  res.json(posts);
+		});
+  });
+	
 };

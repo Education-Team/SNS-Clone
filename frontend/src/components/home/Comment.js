@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Comment = ({ commentData }) => {
-	const { index, id, comment } = commentData;
+	const { comment_id, comment } = commentData;
 
 	const [state, setState] = useState({ goodFlag: false });
 
@@ -25,11 +25,11 @@ const Comment = ({ commentData }) => {
 					<span className="Jv7Aj mArmR MqpiF">
 						<a
 							className="FPmhX notranslate MBL3Z"
-							title={id}
-							href={id}
+							title={comment_id}
+							href={comment_id}
 							tabIndex="0"
 						>
-							{id}
+							{comment_id}
 						</a>
 					</span>
 					&nbsp;

@@ -1,12 +1,12 @@
 import React from 'react';
 import Comment from './Comment';
 
-const CommentList = ({ commentData }) => {
+const CommentList = ({ commentsData }) => {
 	return (
 		<div className="comment_list">
 			{/* 댓글 데이터 반복 가공 */}
-			{commentData &&
-				commentData.map(element => <Comment commentData={element} />)}
+			{commentsData &&
+				commentsData.map(element => <Comment commentData={element} />)}
 		</div>
 	);
 };

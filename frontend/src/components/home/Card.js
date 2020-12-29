@@ -6,7 +6,7 @@ import Profile from './profile.jpg';
 import CommentList from './CommentList';
 
 const Card = ({ cardData }) => {
-	const { index, id, contents, like, commentCnt } = cardData;
+	const { post_id, contents, likes_count, comments_count } = cardData;
 
 	const [comment, setComment] = useState({ comment: '' });
 
@@ -140,8 +140,12 @@ const Card = ({ cardData }) => {
 					<div className="RqtMr">
 						<div className="e1e1d">
 							<span className="Jv7Aj mArmR MqpiF">
-								<a className="sqdOP yWX7d _8A5w5 ZIAjV" href={id} tabIndex="0">
-									{id}
+								<a
+									className="sqdOP yWX7d _8A5w5 ZIAjV"
+									href={post_id}
+									tabIndex="0"
+								>
+									{post_id}
 								</a>
 							</span>
 						</div>
@@ -243,7 +247,7 @@ const Card = ({ cardData }) => {
 					<div className="Igw0E IwRSH eGOV_ ybXk5 vwCYk">
 						<div className="Nm9Fw">
 							<button className="sqdOP yWX7d _8A5w5" type="button">
-								좋아요 <span>{like}</span>개
+								좋아요 <span>{likes_count}</span>개
 							</button>
 						</div>
 					</div>
@@ -258,11 +262,11 @@ const Card = ({ cardData }) => {
 								<span className="Jv7Aj mArmR MqpiF">
 									<a
 										className="FPmhX notranslate MBL3Z"
-										title={id}
-										href={id}
+										title={post_id}
+										href={post_id}
 										tabIndex="0"
 									>
-										{id}
+										{post_id}
 									</a>
 								</span>
 								&nbsp;
@@ -286,11 +290,11 @@ const Card = ({ cardData }) => {
 						<div>
 							<div className="Igw0E IwRSH eGOV_ _4EzTm pjcA_">
 								<a className="r8ZrO" href="/p/CHxvxEoFQU7/" tabIndex="0">
-									댓글 <span>{commentCnt}</span>개 모두 보기
+									댓글 <span>{comments_count}</span>개 모두 보기
 								</a>
 							</div>
 							{/* 댓글리스트 컴포넌트 */}
-							<CommentList commentData={cardData.comment} />
+							<CommentList commentsData={cardData.comments} />
 						</div>
 					</div>
 				</div>

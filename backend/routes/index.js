@@ -32,7 +32,7 @@ module.exports = function (app, Post) {
     })
   });
 
-  // CREATE BOOK
+  // CREATE POST
   app.post("/api/posts", function (req, res) {
     var post = new Post();
     post.post_id = req.body.post_id;
@@ -53,26 +53,57 @@ module.exports = function (app, Post) {
     });
   });
 
-  // UPDATE THE BOOK
-  app.put("/api/books/:book_id", function (req, res) {
-    Book.findById(req.params.book_id, function(err, book){
+  // UPDATE THE POST
+  app.put("/api/posts/:post_id", function (req, res) {
+    Post.findById(req.params.post_id, function(err, post){
       if(err) return res.status(500).json({ error: 'database failure' });
-      if(!book) return res.status(404).json({ error: 'book not found' });
+      if(!post) return res.status(404).json({ error: 'post not found' });
 
-      if(req.body.title) book.title = req.body.title;
-      if(req.body.author) book.author = req.body.author;
-      if(req.body.published_date) book.published_date = req.body.published_date;
+      if(req.body.post_id) post.post_id = req.body.post_id;
+      if(req.body.contents) post.contents = req.body.contents;
+      if(req.body.comments_count) post.comments_count = req.body.comments_count;
 
-      book.save(function(err){
+      post.save(function(err){
           if(err) res.status(500).json({error: 'failed to update'});
-          res.json({message: 'book updated'});
+          res.json({message: 'post updated'});
       });
     });
   });
 
-  // DELETE BOOK
-  app.delete("/api/books/:book_id", function (req, res) {
-    Book.remove({ _id: req.params.book_id }, function(err, output){
+  // UPDATE THE POST
+  app.put("/api/posts/:id/:idcomment", function (req, res) {
+    Post.update({_id:req.params.id},
+       {
+          $pull: {
+              "comments": { _id: req.params.idcomment }
+          }
+      },
+      { new: true }, 
+      function(err, node) {
+        if (err) { return handleError(res, err); }
+        return res.status(200).send("성공");
+      });
+  });
+
+  // UPDATE THE POST
+  app.put("/api/posts/aa/:id/:idcomment", function (req, res) {
+    Post.findByIdAndUpdate({'comments._id': req.params.idcomment},
+       {
+          $set: {
+              "comments.$.comment_id": 'update_array',
+              "comments.$.comment": 'update_comment' 
+          }
+      },
+      { new: true }, 
+      function(err, node) {
+        if (err) { return handleError(res, err); }
+        return res.status(200).send("성공");
+      });
+  });
+
+  // DELETE POST
+  app.delete("/api/posts/:_id", function (req, res) {
+    Post.remove({ _id: req.params._id }, function(err, output){
       if(err) return res.status(500).json({ error: "database failure" });
 
       /* ( SINCE DELETE OPERATION IS IDEMPOTENT, NO NEED TO SPECIFY )

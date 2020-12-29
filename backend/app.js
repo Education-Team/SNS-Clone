@@ -32,7 +32,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb+srv://db-admin:admin@cluster0.npct6.mongodb.net/testDB?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://db-admin:admin@cluster0.npct6.mongodb.net/testDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

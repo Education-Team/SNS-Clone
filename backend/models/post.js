@@ -9,7 +9,8 @@ var postSchema = new Schema({
     comments: [
         {
             comment_id: String,
-            comment: String
+            comment: String,
+            likes_count: Number,
         }
     ],
     post_time: { type: Date, default: Date.now  }

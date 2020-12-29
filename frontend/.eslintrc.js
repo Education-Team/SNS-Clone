@@ -32,5 +32,6 @@ module.exports = {
 		'jsx-a11y/no-static-element-interactions': 0,
 		'react/jsx-props-no-spreading': ['error', { custom: 'ignore' }],
 		'no-console': 0,
+		'no-underscore-dangle': ['error', { allow: ['_id'] }],
 	},
 };

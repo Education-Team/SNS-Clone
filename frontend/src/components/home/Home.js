@@ -86,13 +86,13 @@ const Home = () => {
 	// ];
 
 	return (
-		<home className="SCxLW o64aR">
+		<div className="SCxLW o64aR">
 			<section className="_1SP8R C3uDN j9XKR">
 				{/* 여기서부터 데이터 가져오기 */}
 				<CardList cardsData={cardList} />
 				<Right />
 			</section>
-		</home>
+		</div>
 	);
 };
 

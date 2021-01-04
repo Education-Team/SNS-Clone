@@ -66,7 +66,7 @@ const Card = ({ cardData }) => {
 	const imageGoodEvent = async () => {
 		setState({ ...state, goodFlag: true });
 		try {
-			const data = await api.getPosts();
+			const data = await api.getHome();
 			alert(data[0].author);
 		} catch (err) {
 			console.log('에러발생');

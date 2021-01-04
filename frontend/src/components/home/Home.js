@@ -8,7 +8,7 @@ const Home = () => {
 	const [cardList, setCardList] = useState([]);
 	const postData = async () => {
 		try {
-			const data = await api.getPosts();
+			const data = await api.getHome();
 			setCardList(...cardList, data);
 		} catch (err) {
 			console.log('에러발생');

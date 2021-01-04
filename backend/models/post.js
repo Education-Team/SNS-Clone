@@ -11,6 +11,16 @@ var postSchema = new Schema({
             comment_id: String,
             comment: String,
             likes_count: Number,
+            likes: [
+                {
+                    like_id: String
+                }
+            ]
+        }
+    ],
+    likes: [
+        {
+            like_id: String
         }
     ],
     post_time: { type: Date, default: Date.now  }

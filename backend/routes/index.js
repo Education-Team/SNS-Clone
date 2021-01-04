@@ -6,16 +6,24 @@ module.exports = function (app, Post) {
     res.render("index", { title: "Express" });
   });
 
-  // GET ALL POST
-  app.get("/api/posts", function (req, res) {
+  // 게시물 전체 데이터 불러오기(홈)
+  app.get("/home", function (req, res) {
     Post.find(function (err, posts) {
       if (err) return res.status(500).send({ error: "database failure" });
       res.json(posts);
     });
   });
 
-  // GET SINGLE POST
-  app.get("/api/post/:id", function (req, res) {
+  // 게시물 전체 데이터 불러오기(나침반)
+  app.get("/main", function (req, res) {
+    Post.find(function (err, posts) {
+      if (err) return res.status(500).send({ error: "database failure" });
+      res.json(posts);
+    });
+  });
+
+  // 특정 게시물 데이터 불러오기
+  app.get("/post/:id", function (req, res) {
     Post.findOne({_id: req.params.id}, function(err, post){
       if(err) return res.status(500).json({error: err});
       if(!post) return res.status(404).json({error: 'post not found'});
@@ -23,17 +31,9 @@ module.exports = function (app, Post) {
     })
   });
 
-  // GET BOOK BY AUTHOR
-  app.get("/api/books/author/:author", function (req, res) {
-    Book.find({author: req.params.author}, {_id: 0, title: 1, published_date: 1},  function(err, books){
-      if(err) return res.status(500).json({error: err});
-      if(books.length === 0) return res.status(404).json({error: 'book not found'});
-      res.json(books);
-    })
-  });
 
-  // CREATE POST
-  app.post("/api/posts", function (req, res) {
+  // 게시물 저장(추가)
+  app.post("/post", function (req, res) {
     var post = new Post();
     post.post_id = req.body.post_id;
     post.contents = req.body.contents;
@@ -53,9 +53,9 @@ module.exports = function (app, Post) {
     });
   });
 
-  // UPDATE THE POST
-  app.put("/api/posts/:post_id", function (req, res) {
-    Post.findById(req.params.post_id, function(err, post){
+  // 게시물 수정
+  app.post("/post", function (req, res) {
+    Post.findById(req.body.id, function(err, post){
       if(err) return res.status(500).json({ error: 'database failure' });
       if(!post) return res.status(404).json({ error: 'post not found' });
 
@@ -70,12 +70,42 @@ module.exports = function (app, Post) {
     });
   });
 
-  // UPDATE THE POST
-  app.put("/api/posts/:id/:idcomment", function (req, res) {
-    Post.update({_id:req.params.id},
+  // 게시물 삭제
+  app.post("/post/delete", function (req, res) {
+    Post.remove({ _id: req.body.id }, function(err, output){
+      if(err) return res.status(500).json({ error: "database failure" });
+
+      /* ( SINCE DELETE OPERATION IS IDEMPOTENT, NO NEED TO SPECIFY )
+      if(!output.result.n) return res.status(404).json({ error: "book not found" });
+      res.json({ message: "book deleted" });
+      */
+
+      res.status(204).end();
+    })
+  });
+
+  // 게시물 좋아요, 좋아요 취소
+  app.post("/post/like", function (req, res) {
+    Post.findById(req.body.id, function(err, post){
+      if(err) return res.status(500).json({ error: 'database failure' });
+      if(!post) return res.status(404).json({ error: 'post not found' });
+
+      if(req.body.likes_count) post.likes_count = req.body.likes_count;
+
+      post.save(function(err){
+          if(err) res.status(500).json({error: 'failed to update'});
+          res.json({message: 'post updated'});
+      });
+    });
+  });
+
+  // 댓글 저장(추가)
+  app.post("/comment", function (req, res) {
+    Post.findByIdAndUpdate({'comments._id': req.body.comment_id},
        {
-          $pull: {
-              "comments": { _id: req.params.idcomment }
+          $set: {
+              "comments.$.comment_id": 'update_array',
+              "comments.$.comment": 'update_comment' 
           }
       },
       { new: true }, 
@@ -84,6 +114,31 @@ module.exports = function (app, Post) {
         return res.status(200).send("靹标车");
       });
   });
+
+  // 댓글 삭제
+  app.post("/comment/delete", function (req, res) {
+    Post.update({_id:req.body.id},
+       {
+          $pull: {
+              "comments": { _id: req.body.comment_id }
+          }
+      },
+      { new: true }, 
+      function(err, node) {
+        if (err) { return handleError(res, err); }
+        return res.status(200).send("靹标车");
+      });
+  });
+
+  // 댓글 좋아요, 좋아요 취소
+  app.post("/comment/like", function (req, res) {
+  });
+
+
+
+
+
+  
 
   // UPDATE THE POST
   app.put("/api/posts/aa/:id/:idcomment", function (req, res) {
@@ -100,25 +155,6 @@ module.exports = function (app, Post) {
         return res.status(200).send("靹标车");
       });
   });
-
-  // DELETE POST
-  app.delete("/api/posts/:_id", function (req, res) {
-    Post.remove({ _id: req.params._id }, function(err, output){
-      if(err) return res.status(500).json({ error: "database failure" });
-
-      /* ( SINCE DELETE OPERATION IS IDEMPOTENT, NO NEED TO SPECIFY )
-      if(!output.result.n) return res.status(404).json({ error: "book not found" });
-      res.json({ message: "book deleted" });
-      */
-
-      res.status(204).end();
-    })
-  });
-	
-	
-	
-	
-	
 	
   app.get("/test/:id", function (req, res) {
     Post.findOneAndUpdate(
